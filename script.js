@@ -21,7 +21,7 @@ const clean = (v, max) => String(v).replace(/[\u0000-\u001F\u007F<>]/g, ' ').rep
 const CONFIG = {
   whatsapp: '996700516888',   // халкаралык формат, "+" жок
   telegramUser: 'N1kto01',    // Telegram username ('@' жок). Бош болсо, Telegram көрүнбөйт
-  collectUrl: '',             // Google Apps Script Web App URL (заявкалар базасы + статистика). Бош болсо — өчүк. README.md → "Заявкалар базасы"
+  collectUrl: 'https://script.google.com/macros/s/AKfycbwLj3zee8LQfD3JA0alG_9ttWYliCSgEbwDnIrIeHFXfaCWlC-hNIZFQAndLeC4QB9-/exec',             // Google Apps Script Web App URL (заявкалар базасы + статистика). Бош болсо — өчүк. README.md → "Заявкалар базасы"
   siteKey: 'vc-kg-2026'       // backend/Code.gs ичиндеги SITE_KEY менен бирдей болушу керек (жашыруун эмес, жөн гана таштанды чыпкалоо)
 };
 
