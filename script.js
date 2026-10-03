@@ -57,6 +57,9 @@ const RU = {
   'adv.3.t': 'Адаптация под телефон', 'adv.3.d': 'Страницы корректно выглядят начиная с экрана 375px.',
   'adv.4.t': 'Прямая связь в WhatsApp', 'adv.4.d': 'Вопросы и правки — напрямую, без посредников.',
 
+  'adv.k1': 'Прототип', 'adv.k2': 'Правки', 'adv.k3': 'Готовый сайт',
+  'adv.s1': 'Разговор', 'adv.s2': 'Цена', 'adv.s3': 'Работа', 'adv.s4': 'Сдача',
+  'adv.c1': 'Здравствуйте, нужен сайт', 'adv.c2': 'Здравствуйте! Назову цену',
   'srv.sub': 'Выберите то, что нужно вашему бизнесу',
   'srv.cta': 'Уточнить стоимость',
   'srv.ex': 'Пример:',
@@ -203,19 +206,25 @@ document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
   KG_PLACEHOLDERS[el.dataset.i18nPlaceholder] = el.getAttribute('placeholder');
 });
 
+let langInitDone = false;
 function applyLang(lang) {
   currentLang = lang;
   const dict = lang === 'ru' ? RU : KG;
+  /* Кыргызча текст HTML'де даяр турат: биринчи жүктөлүштө кайра жазбайбыз (ылдамдык) */
+  const skipText = lang === 'kg' && !langInitDone;
+  langInitDone = true;
 
   document.documentElement.lang = lang === 'ru' ? 'ru' : 'ky';
-  document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const val = dict[el.dataset.i18n];
-    if (val !== undefined) el.innerHTML = val;
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
-    const key = el.dataset.i18nPlaceholder;
-    el.setAttribute('placeholder', lang === 'ru' ? RU[key] : KG_PLACEHOLDERS[key]);
-  });
+  if (!skipText) {
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const val = dict[el.dataset.i18n];
+      if (val !== undefined) el.innerHTML = val;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.dataset.i18nPlaceholder;
+      el.setAttribute('placeholder', lang === 'ru' ? RU[key] : KG_PLACEHOLDERS[key]);
+    });
+  }
 
   document.title = META[lang].title;
   document.querySelector('meta[name="description"]').setAttribute('content', META[lang].desc);
@@ -244,6 +253,7 @@ function applyLang(lang) {
    Кичи сап: тамга-тамга пайда болот.
    prefers-reduced-motion болсо, CSS анимацияларды өчүрөт. */
 function splitWords(el) {
+  if (el.querySelector('.w')) return; /* HTML'де алдын ала бөлүнгөн (кыргызча) */
   let i = 0;
   const walk = (node, cls) => {
     [...node.childNodes].forEach((n) => {
@@ -256,7 +266,7 @@ function splitWords(el) {
           w.className = 'w' + (cls ? ' ' + cls : '');
           const inner = document.createElement('span');
           inner.textContent = part;
-          inner.style.animationDelay = (150 + i++ * 90) + 'ms';
+          inner.style.animationDelay = (80 + i++ * 60) + 'ms';
           w.appendChild(inner);
           frag.appendChild(w);
         });
@@ -270,12 +280,13 @@ function splitWords(el) {
 }
 
 function splitChars(el) {
+  if (el.querySelector('.ch')) return; /* HTML'де алдын ала бөлүнгөн (кыргызча) */
   const text = el.textContent;
   el.textContent = '';
   [...text].forEach((c, i) => {
     const s = document.createElement('span');
     s.className = 'ch';
-    s.style.animationDelay = (i * 28) + 'ms';
+    s.style.animationDelay = (i * 18) + 'ms';
     s.textContent = c;
     el.appendChild(s);
   });
@@ -548,3 +559,12 @@ if (CONFIG.collectUrl) {
   if (document.readyState === 'complete') begin();
   else addEventListener('load', begin, { once: true });
 })();
+
+/* ---------- 8. Артыкчылыктар карточкаларынын жарыгы: чычкан/манжа артынан жүрөт ---------- */
+document.querySelectorAll('.adv-card').forEach((c) => {
+  c.addEventListener('pointermove', (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+});

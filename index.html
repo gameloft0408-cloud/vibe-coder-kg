@@ -82,13 +82,13 @@
 
     /* Аталыш: сөз-сөз өйдө чыгат (JS ар бир сөздү .w ичине салат) */
     .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
-    .w > span { display: inline-block; transform: translateY(115%); animation: rise .75s cubic-bezier(.2,.7,.2,1) forwards; }
+    .w > span { display: inline-block; transform: translateY(115%); animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; }
     /* Алтын сөздөр жылтырайт */
     .gw > span {
       background: linear-gradient(90deg, #C9B27C 0%, #F3EAD0 25%, #C9B27C 50%, #F3EAD0 75%, #C9B27C 100%);
       background-size: 200% 100%;
       -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: rise .75s cubic-bezier(.2,.7,.2,1) forwards, shimmer 4.5s linear 1.2s infinite;
+      animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards, shimmer 4.5s linear 1s 3;
     }
     /* Кичи сап: тамга-тамга пайда болот */
     .ch { opacity: 0; animation: chIn .01s forwards; }
@@ -143,7 +143,6 @@
     @media (max-width: 640px) { .tile { display: none; } .eyebrow { border-radius: 18px; line-height: 1.55; padding: 8px 14px; } }
 
     /* Hero аталышы: градиент тамгалар, жумшак көлөкө, кичи сап — таблетка */
-    #heroTitle { filter: drop-shadow(0 8px 28px rgba(0,0,0,.35)); }
     #heroTitle .w:not(.gw) > span { background: linear-gradient(180deg, #ffffff 25%, #c9dcd4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .eyebrow { display: inline-block; padding: 7px 16px 7px 14px; border-radius: 999px; border: 1px solid rgba(201,178,124,.32); background: rgba(201,178,124,.08); }
     .eyebrow::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 9px; border-radius: 50%; background: #C9B27C; vertical-align: 1px; animation: pulseDot 2.4s ease-in-out infinite; }
@@ -161,11 +160,10 @@
     section.deco { position: relative; isolation: isolate; }
     section.deco::before, section.deco::after { content: ''; position: absolute; pointer-events: none; z-index: -1; }
     .deco-dots::before { left: 50%; width: 100vw; top: 0; bottom: 0; transform: translateX(-50%);
-      background-image: radial-gradient(rgba(228,218,192,.14) 1px, transparent 1.5px); background-size: 26px 26px;
-      -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
+      background-image: linear-gradient(180deg, #07100F 0, rgba(7,16,15,0) 24%, rgba(7,16,15,0) 76%, #07100F 100%), radial-gradient(rgba(228,218,192,.14) 1px, transparent 1.5px);
+      background-size: 100% 100%, 26px 26px; }
     .deco-lines::before { left: 50%; width: 100vw; top: 0; bottom: 0; transform: translateX(-50%);
-      background: repeating-linear-gradient(115deg, rgba(228,218,192,.06) 0 1px, transparent 1px 30px);
-      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 10%, transparent 75%); mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 10%, transparent 75%); }
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(7,16,15,0) 10%, #07100F 78%), repeating-linear-gradient(115deg, rgba(228,218,192,.06) 0 1px, transparent 1px 30px); }
     .deco-orb-r::after { width: 60vmax; height: 60vmax; right: calc(50% - 50vw - 25vmax); top: 4%; border-radius: 50%; will-change: transform;
       background: radial-gradient(circle, rgba(70,160,135,.26), rgba(70,160,135,0) 62%); animation: drift2 30s ease-in-out infinite; }
     .deco-orb-l::after { width: 56vmax; height: 56vmax; left: calc(50% - 50vw - 24vmax); top: 10%; border-radius: 50%; will-change: transform;
@@ -175,6 +173,84 @@
 
     @media (prefers-reduced-motion: reduce) {
       .orb, .tile, .ring, .deco-orb-r::after, .deco-orb-l::after, .eyebrow::before { animation: none !important; }
+    }
+
+    /* ===== Артыкчылыктар: анимациялуу премиум карточкалар ===== */
+    .adv-grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) { .adv-grid { grid-template-columns: 1fr 1fr; } }
+    .adv-card { position: relative; isolation: isolate; overflow: hidden; border-radius: 2rem; border: 1px solid rgba(228,218,192,.14);
+      background: linear-gradient(160deg, rgba(30,58,52,.92), rgba(14,30,27,.92)); transition: border-color .4s, transform .4s; }
+    .adv-card::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .4s;
+      background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(201,178,124,.20), transparent 62%); }
+    .adv-card:hover { border-color: rgba(201,178,124,.5); }
+    .adv-card:hover::before { opacity: 1; }
+    .adv-num { position: absolute; top: 12px; right: 20px; font: 800 46px/1 Montserrat, sans-serif; color: rgba(255,255,255,.07); z-index: 2; pointer-events: none; }
+    .adv-vis { position: relative; height: 190px; display: grid; place-items: center; padding: 0 20px; border-bottom: 1px solid rgba(228,218,192,.08);
+      background: radial-gradient(90% 130% at 50% 0%, rgba(70,160,135,.24), transparent 72%), repeating-linear-gradient(0deg, transparent 0 23px, rgba(255,255,255,.03) 23px 24px); }
+    .adv-body { padding: 22px 26px 28px; }
+    .adv-card:not(.in) .adv-vis * { animation-play-state: paused !important; }
+
+    /* 1. Ылдамдык: шкала толот, тизме белгиленет */
+    .v1 { display: flex; align-items: center; gap: 26px; }
+    .gauge { position: relative; width: 104px; height: 104px; flex: none; }
+    .gauge > svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .g-bg, .g-fg { fill: none; stroke-width: 8; }
+    .g-bg { stroke: rgba(255,255,255,.08); }
+    .g-fg { stroke: #C9B27C; stroke-linecap: round; stroke-dasharray: 314; stroke-dashoffset: 314; animation: gfill 4.2s ease-in-out infinite; }
+    .gauge-ic { position: absolute; inset: 0; display: grid; place-items: center; color: #E4DAC0; animation: boltPulse 4.2s ease-in-out infinite; }
+    .chk { list-style: none; display: grid; gap: 11px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88); }
+    .chk li { display: flex; align-items: center; gap: 10px; }
+    .chk i { position: relative; width: 19px; height: 19px; flex: none; border-radius: 50%; border: 1.5px solid rgba(201,178,124,.5); animation: tick 4.2s ease-in-out infinite; animation-delay: var(--d); }
+    .chk i::after { content: ''; position: absolute; left: 5.5px; top: 2px; width: 4px; height: 8px; border: solid #07100F; border-width: 0 2px 2px 0; transform: rotate(45deg); opacity: 0; animation: tickMark 4.2s ease-in-out infinite; animation-delay: var(--d); }
+    @keyframes gfill { 0% { stroke-dashoffset: 314; } 58%, 90% { stroke-dashoffset: 30; } 100% { stroke-dashoffset: 314; } }
+    @keyframes boltPulse { 0%, 100% { transform: scale(.9); opacity: .7; } 58% { transform: scale(1.12); opacity: 1; } }
+    @keyframes tick { 0%, 14% { background: transparent; border-color: rgba(201,178,124,.5); } 26%, 88% { background: #C9B27C; border-color: #C9B27C; } 100% { background: transparent; border-color: rgba(201,178,124,.5); } }
+    @keyframes tickMark { 0%, 14% { opacity: 0; } 26%, 88% { opacity: 1; } 100% { opacity: 0; } }
+
+    /* 2. Процесс: 4 кадам бири-биринин артынан жанат */
+    .steps { position: relative; display: flex; justify-content: space-between; width: min(430px, 100%); }
+    .st-line { position: absolute; left: 24px; right: 24px; top: 18px; height: 2px; border-radius: 2px; background: rgba(255,255,255,.12); }
+    .st-line i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #C9B27C, #E4DAC0); animation: lineFill 6.4s ease-in-out infinite; }
+    .st { position: relative; z-index: 1; width: 25%; display: grid; justify-items: center; gap: 10px; font-size: 11.5px; font-weight: 600; text-align: center; color: rgba(255,255,255,.75); }
+    .st b { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; font: 800 14px Montserrat, sans-serif; background: #12332D; color: #E4DAC0; border: 2px solid rgba(201,178,124,.38); animation: stepOn 6.4s ease-in-out infinite; animation-delay: var(--d); }
+    @keyframes lineFill { 0% { width: 0; } 58%, 90% { width: 100%; } 100% { width: 0; } }
+    @keyframes stepOn {
+      0%, 4% { background: #12332D; color: #E4DAC0; border-color: rgba(201,178,124,.38); box-shadow: 0 0 0 0 rgba(201,178,124,0); transform: scale(1); }
+      12%, 76% { background: #C9B27C; color: #07100F; border-color: #C9B27C; box-shadow: 0 0 0 8px rgba(201,178,124,.16); transform: scale(1.1); }
+      90%, 100% { background: #12332D; color: #E4DAC0; border-color: rgba(201,178,124,.38); box-shadow: 0 0 0 0 rgba(201,178,124,0); transform: scale(1); }
+    }
+
+    /* 3. Түзмөктөр: телефон, планшет, компьютер кезек менен жарык болот */
+    .devs { display: flex; align-items: flex-end; gap: 18px; }
+    .dv { display: grid; gap: 5px; align-content: start; padding: 9px; border-radius: 10px; border: 2px solid rgba(255,255,255,.22); background: rgba(255,255,255,.04); animation: devOn 6s ease-in-out infinite; animation-delay: var(--d); }
+    .dv1 { width: 44px; height: 82px; border-radius: 13px; }
+    .dv2 { width: 88px; height: 64px; }
+    .dv3 { width: 128px; height: 82px; }
+    .dv i { display: block; height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); }
+    .dv i:first-child { width: 62%; background: rgba(201,178,124,.55); }
+    .dv i:last-child { width: 78%; }
+    @keyframes devOn {
+      0%, 6% { border-color: rgba(255,255,255,.22); box-shadow: 0 0 0 rgba(201,178,124,0); transform: translateY(0); }
+      16%, 34% { border-color: #C9B27C; box-shadow: 0 0 30px rgba(201,178,124,.38); transform: translateY(-7px); }
+      46%, 100% { border-color: rgba(255,255,255,.22); box-shadow: 0 0 0 rgba(201,178,124,0); transform: translateY(0); }
+    }
+
+    /* 4. Түз байланыш: билдирүүлөр кезек менен чыгат */
+    .chatv { display: grid; gap: 9px; width: min(310px, 100%); }
+    .cb { max-width: 84%; padding: 9px 13px; border-radius: 15px; font-size: 12.5px; line-height: 1.35; opacity: 0; animation: bub 7.6s ease-in-out infinite; animation-delay: var(--d); }
+    .cb.in { justify-self: start; background: #17352f; border: 1px solid rgba(228,218,192,.12); border-bottom-left-radius: 4px; }
+    .cb.out { justify-self: end; background: linear-gradient(135deg, #E4DAC0, #C9B27C); color: #1a2a26; font-weight: 600; border-bottom-right-radius: 4px; }
+    .cb.out em { margin-left: 7px; font-style: normal; font-size: 10px; opacity: .7; }
+    .cb.dots { justify-self: start; display: flex; gap: 4px; padding: 11px 13px; background: #17352f; border: 1px solid rgba(228,218,192,.12); }
+    .cb.dots i { width: 5px; height: 5px; border-radius: 50%; background: #E4DAC0; animation: dotb 1s ease-in-out infinite; }
+    .cb.dots i:nth-child(2) { animation-delay: .15s; } .cb.dots i:nth-child(3) { animation-delay: .3s; }
+    @keyframes bub { 0% { opacity: 0; transform: translateY(10px) scale(.96); } 8%, 82% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: translateY(-4px); } }
+    @keyframes dotb { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-4px); opacity: 1; } }
+
+    @media (max-width: 640px) { .adv-vis { height: 176px; } .v1 { gap: 18px; } .gauge { width: 88px; height: 88px; } .adv-body { padding: 20px 20px 24px; } .dv3 { width: 104px; } }
+    @media (prefers-reduced-motion: reduce) {
+      .adv-vis * { animation: none !important; }
+      .cb { opacity: 1; } .g-fg { stroke-dashoffset: 40; } .chk i { background: #C9B27C; } .chk i::after { opacity: 1; } .st-line i { width: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -259,8 +335,8 @@
 
         <!-- Оң жак: аталыш, оффер, CTA -->
         <div class="order-1 md:order-2">
-          <p id="heroEyebrow" class="eyebrow text-gold text-xs sm:text-sm font-medium tracking-wider uppercase mb-5" data-i18n="hero.eyebrow">AI менен чат-бот, сайт жана автоматташтыруу</p>
-          <h1 id="heroTitle" class="font-display font-extrabold uppercase text-3xl sm:text-4xl lg:text-5xl leading-tight text-white" data-i18n="hero.title">Идеяңыздан иштеген сайтка чейин — <span class="text-gold">AI менен ылдам</span></h1>
+          <p id="heroEyebrow" class="eyebrow text-gold text-xs sm:text-sm font-medium tracking-wider uppercase mb-5" data-i18n="hero.eyebrow"><span class="ch" style="animation-delay:0ms">A</span><span class="ch" style="animation-delay:18ms">I</span><span class="ch" style="animation-delay:36ms"> </span><span class="ch" style="animation-delay:54ms">м</span><span class="ch" style="animation-delay:72ms">е</span><span class="ch" style="animation-delay:90ms">н</span><span class="ch" style="animation-delay:108ms">е</span><span class="ch" style="animation-delay:126ms">н</span><span class="ch" style="animation-delay:144ms"> </span><span class="ch" style="animation-delay:162ms">ч</span><span class="ch" style="animation-delay:180ms">а</span><span class="ch" style="animation-delay:198ms">т</span><span class="ch" style="animation-delay:216ms">-</span><span class="ch" style="animation-delay:234ms">б</span><span class="ch" style="animation-delay:252ms">о</span><span class="ch" style="animation-delay:270ms">т</span><span class="ch" style="animation-delay:288ms">,</span><span class="ch" style="animation-delay:306ms"> </span><span class="ch" style="animation-delay:324ms">с</span><span class="ch" style="animation-delay:342ms">а</span><span class="ch" style="animation-delay:360ms">й</span><span class="ch" style="animation-delay:378ms">т</span><span class="ch" style="animation-delay:396ms"> </span><span class="ch" style="animation-delay:414ms">ж</span><span class="ch" style="animation-delay:432ms">а</span><span class="ch" style="animation-delay:450ms">н</span><span class="ch" style="animation-delay:468ms">а</span><span class="ch" style="animation-delay:486ms"> </span><span class="ch" style="animation-delay:504ms">а</span><span class="ch" style="animation-delay:522ms">в</span><span class="ch" style="animation-delay:540ms">т</span><span class="ch" style="animation-delay:558ms">о</span><span class="ch" style="animation-delay:576ms">м</span><span class="ch" style="animation-delay:594ms">а</span><span class="ch" style="animation-delay:612ms">т</span><span class="ch" style="animation-delay:630ms">т</span><span class="ch" style="animation-delay:648ms">а</span><span class="ch" style="animation-delay:666ms">ш</span><span class="ch" style="animation-delay:684ms">т</span><span class="ch" style="animation-delay:702ms">ы</span><span class="ch" style="animation-delay:720ms">р</span><span class="ch" style="animation-delay:738ms">у</span><span class="ch" style="animation-delay:756ms">у</span></p>
+          <h1 id="heroTitle" class="font-display font-extrabold uppercase text-3xl sm:text-4xl lg:text-5xl leading-tight text-white" data-i18n="hero.title"><span class="w"><span style="animation-delay:80ms">Идеяңыздан</span></span> <span class="w"><span style="animation-delay:140ms">иштеген</span></span> <span class="w"><span style="animation-delay:200ms">сайтка</span></span> <span class="w"><span style="animation-delay:260ms">чейин</span></span> <span class="w"><span style="animation-delay:320ms">—</span></span> <span class="text-gold"><span class="w gw"><span style="animation-delay:380ms">AI</span></span> <span class="w gw"><span style="animation-delay:440ms">менен</span></span> <span class="w gw"><span style="animation-delay:500ms">ылдам</span></span></span></h1>
           <p class="fx mt-5 text-base md:text-lg text-white/80 max-w-lg" style="--d:1.1s" data-i18n="hero.sub">Чат-боттор, автоматташтыруу, сайттар жана тиркемелер — бизнесиңиз үчүн. Vibe coding курсунда өзүңүз жасаганды үйрөнөсүз.</p>
 
           <div class="fx mt-7" style="--d:1.3s">
@@ -321,26 +397,70 @@
     <!-- ============ 3. АРТЫКЧЫЛЫКТАР ============ -->
     <section id="advantages" class="deco deco-dots max-w-6xl mx-auto px-4 py-16 md:py-20">
       <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="adv.title">Биз менен иштөө ыңгайлуу</h2>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <article class="adv-card glass rounded-3xl p-6 reveal">
-          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">01</span></div>
-          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.1.t">AI менен ылдам</h3>
-          <p class="mt-2 text-sm text-white/75" data-i18n="adv.1.d">Прототипти бат көрөсүз, оңдоолорду тез киргизебиз.</p>
+      <div class="adv-grid mt-10">
+        <article class="adv-card reveal">
+          <span class="adv-num" aria-hidden="true">01</span>
+          <div class="adv-vis" aria-hidden="true">
+            <div class="v1">
+              <div class="gauge"><svg viewBox="0 0 120 120"><circle class="g-bg" cx="60" cy="60" r="50"/><circle class="g-fg" cx="60" cy="60" r="50"/></svg><span class="gauge-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span></div>
+              <ul class="chk">
+                <li><i style="--d:.4s"></i><span data-i18n="adv.k1">Прототип</span></li>
+                <li><i style="--d:1.1s"></i><span data-i18n="adv.k2">Оңдоолор</span></li>
+                <li><i style="--d:1.8s"></i><span data-i18n="adv.k3">Даяр сайт</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="adv-body">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="adv.1.t">AI менен ылдам</h3>
+            <p class="mt-2 text-sm md:text-base text-white/75" data-i18n="adv.1.d">Прототипти бат көрөсүз, оңдоолорду тез киргизебиз.</p>
+          </div>
         </article>
-        <article class="adv-card glass rounded-3xl p-6 reveal">
-          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.5 1.5L7 5M3.5 12l1.5 1.5L7 11M3.5 18l1.5 1.5L7 17"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">02</span></div>
-          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.2.t">Түшүнүктүү процесс</h3>
-          <p class="mt-2 text-sm text-white/75" data-i18n="adv.2.d">Ар бир этап жана баа алдын ала макулдашылат.</p>
+
+        <article class="adv-card reveal">
+          <span class="adv-num" aria-hidden="true">02</span>
+          <div class="adv-vis" aria-hidden="true">
+            <div class="steps">
+              <div class="st-line"><i></i></div>
+              <div class="st" style="--d:0s"><b>1</b><span data-i18n="adv.s1">Сүйлөшүү</span></div>
+              <div class="st" style="--d:1.2s"><b>2</b><span data-i18n="adv.s2">Баа</span></div>
+              <div class="st" style="--d:2.4s"><b>3</b><span data-i18n="adv.s3">Иш</span></div>
+              <div class="st" style="--d:3.6s"><b>4</b><span data-i18n="adv.s4">Тапшыруу</span></div>
+            </div>
+          </div>
+          <div class="adv-body">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="adv.2.t">Түшүнүктүү процесс</h3>
+            <p class="mt-2 text-sm md:text-base text-white/75" data-i18n="adv.2.d">Ар бир этап жана баа алдын ала макулдашылат.</p>
+          </div>
         </article>
-        <article class="adv-card glass rounded-3xl p-6 reveal">
-          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">03</span></div>
-          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.3.t">Телефонго ылайыкталган</h3>
-          <p class="mt-2 text-sm text-white/75" data-i18n="adv.3.d">Баракчалар 375px экрандан баштап туура көрүнөт.</p>
+
+        <article class="adv-card reveal">
+          <span class="adv-num" aria-hidden="true">03</span>
+          <div class="adv-vis" aria-hidden="true">
+            <div class="devs">
+              <div class="dv dv1" style="--d:0s"><i></i><i></i><i></i></div>
+              <div class="dv dv2" style="--d:2s"><i></i><i></i><i></i></div>
+              <div class="dv dv3" style="--d:4s"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="adv-body">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="adv.3.t">Телефонго ылайыкталган</h3>
+            <p class="mt-2 text-sm md:text-base text-white/75" data-i18n="adv.3.d">Баракчалар 375px экрандан баштап туура көрүнөт.</p>
+          </div>
         </article>
-        <article class="adv-card glass rounded-3xl p-6 reveal">
-          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">04</span></div>
-          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.4.t">WhatsApp'та түз байланыш</h3>
-          <p class="mt-2 text-sm text-white/75" data-i18n="adv.4.d">Суроо жана оңдоолор үчүн ортомчусуз жазасыз.</p>
+
+        <article class="adv-card reveal">
+          <span class="adv-num" aria-hidden="true">04</span>
+          <div class="adv-vis" aria-hidden="true">
+            <div class="chatv">
+              <div class="cb in" style="--d:0s" data-i18n="adv.c1">Саламатсызбы, сайт керек эле</div>
+              <div class="cb out" style="--d:1.4s"><span data-i18n="adv.c2">Саламатсызбы! Баасын айтам</span><em>✓✓</em></div>
+              <div class="cb dots" style="--d:2.8s"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="adv-body">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="adv.4.t">WhatsApp'та түз байланыш</h3>
+            <p class="mt-2 text-sm md:text-base text-white/75" data-i18n="adv.4.d">Суроо жана оңдоолор үчүн ортомчусуз жазасыз.</p>
+          </div>
         </article>
       </div>
     </section>
