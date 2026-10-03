@@ -479,7 +479,7 @@ if (CONFIG.collectUrl) {
 }
 
 /* ---------- 7. HERO ФОНУ: бири-бирине байланган чекиттер ----------
-   Жеңил canvas: чекиттер жай жылат, жакындары сызык менен байланат. Hero көрүнбөсө же бет жашырылса — токтойт.
+   Жеңил canvas (жүктөлгөндөн 3,5 сек кийин башталат): чекиттер жай жылат, жакындары сызык менен байланат. Hero көрүнбөсө же бет жашырылса — токтойт.
    "prefers-reduced-motion" болсо — бир жолу гана тартылат. Баракчанын жүктөлүшүн кармабайт (idle убакытта башталат). */
 (function heroNetwork() {
   const cv = document.getElementById('heroCanvas');
@@ -543,6 +543,8 @@ if (CONFIG.collectUrl) {
     }
     update();
   }
-  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1200 });
-  else setTimeout(start, 400);
+  /* Баракча толук жүктөлүп, негизги мазмун көрүнгөндөн кийин гана баштайт (ылдамдыкты тоскоол кылбайт), жумшак пайда болот */
+  const begin = () => setTimeout(() => { cv.classList.add('on'); start(); }, 3500);
+  if (document.readyState === 'complete') begin();
+  else addEventListener('load', begin, { once: true });
 })();
