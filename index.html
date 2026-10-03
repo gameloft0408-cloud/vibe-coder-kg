@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <title>vibe_coder.kg — AI чат-боттор, сайттар жана vibe coding курсу</title>
+  <meta name="description" content="AI чат-боттор, CRM автоматташтыруу, сайттар жана ички тиркемелер — $150дөн. Vibe coding курсу — $50дөн. WhatsApp'ка жазыңыз.">
+  <meta name="theme-color" content="#07100F">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="vibe_coder.kg — AI чат-боттор, сайттар жана vibe coding курсу">
+  <meta property="og:description" content="AI чат-боттор, автоматташтыруу жана сайттар. Vibe coding курсу — $50дөн.">
+  <meta property="og:url" content="https://gameloft0408-cloud.github.io/vibe-coder-kg/">
+  <meta property="og:image" content="https://gameloft0408-cloud.github.io/vibe-coder-kg/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="vibe_coder.kg — AI чат-боттор, сайттар жана vibe coding курсу">
+  <meta property="og:site_name" content="vibe_coder.kg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://gameloft0408-cloud.github.io/vibe-coder-kg/">
+  <meta property="og:locale" content="ky_KG">
+
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+
+  <!-- Структураланган маалымат (JSON-LD, аткарылбайт — CSP менен конфликт жок) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"vibe_coder.kg","url":"https://gameloft0408-cloud.github.io/vibe-coder-kg/","image":"https://gameloft0408-cloud.github.io/vibe-coder-kg/images/og.jpg","telephone":"+996700516888","areaServed":"KG","description":"AI чат-боттор, CRM автоматташтыруу, сайттар жана ички тиркемелер. Vibe coding курсу.","sameAs":["https://t.me/N1kto01"]}
+  </script>
+
+  <!-- Коопсуздук: контент саясаты (CSP). Скрипттер жана шрифттер — өз серверибизден гана. Толук баштар: _headers / vercel.json -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Шрифттер: Montserrat (аталыштар) + Inter (текст). Өзүбүздүн серверден, кириллица жана ң ү ө тамгалары менен -->
+
+  <!-- Tailwind CSS: алдын ала build кылынган (css/styles.css). Конфиг: tailwind.config.js -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      background:
+        radial-gradient(1100px 620px at 50% -8%, #2a5a4f 0%, rgba(42,90,79,0) 65%),
+        radial-gradient(700px 500px at 100% 40%, rgba(18,51,45,.7) 0%, rgba(18,51,45,0) 70%),
+        #07100F;
+      background-repeat: no-repeat;
+    }
+    /* Шише эффектиндеги карточка */
+    .glass {
+      background: linear-gradient(160deg, rgba(30,58,52,.92), rgba(14,30,27,.92));
+      border: 1px solid rgba(228,218,192,.14);
+    }
+    /* Толтурула турган орундар ([ОРУН АЛМАШТЫР]) — табуу оңой болушу үчүн */
+    .ph { outline: 1px dashed rgba(201,178,124,.7); outline-offset: 2px; border-radius: 4px; color: #E4DAC0; padding: 0 4px; }
+    /* Ири кооздоочу фон тексти */
+    .ghost { color: rgba(255,255,255,.045); font-family: Montserrat, sans-serif; font-weight: 800; line-height: .8; user-select: none; pointer-events: none; }
+    /* Көрүнүү анимациясы */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-plus { transform: rotate(45deg); }
+    :focus-visible { outline: 2px solid #C9B27C; outline-offset: 3px; }
+
+    /* ===== Анимациялар ===== */
+    @keyframes rise { to { transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes chIn { to { opacity: 1; } }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes floaty2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes ghostDrift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(14px); } }
+
+    /* Аталыш: сөз-сөз өйдө чыгат (JS ар бир сөздү .w ичине салат) */
+    .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
+    .w > span { display: inline-block; transform: translateY(115%); animation: rise .75s cubic-bezier(.2,.7,.2,1) forwards; }
+    /* Алтын сөздөр жылтырайт */
+    .gw > span {
+      background: linear-gradient(90deg, #C9B27C 0%, #F3EAD0 25%, #C9B27C 50%, #F3EAD0 75%, #C9B27C 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: rise .75s cubic-bezier(.2,.7,.2,1) forwards, shimmer 4.5s linear 1.2s infinite;
+    }
+    /* Кичи сап: тамга-тамга пайда болот */
+    .ch { opacity: 0; animation: chIn .01s forwards; }
+    /* Hero ичиндеги калган текст кезеги менен чыгат */
+    .fx { opacity: 0; animation: fadeUp .8s ease forwards; animation-delay: var(--d, 0s); }
+    /* Бөлүм аталышынын астындагы сызык */
+    main h2.reveal::after { content: ''; display: block; height: 3px; width: 0; margin-top: 14px; border-radius: 2px; background: linear-gradient(90deg, #C9B27C, #E4DAC0); transition: width .9s ease .35s; }
+    main h2.reveal.in::after { width: 56px; }
+    /* Сүрөттөр */
+    .float-a { animation: floaty 6s ease-in-out infinite; }
+    .float-b { animation: floaty2 5.5s ease-in-out infinite; }
+    .svc-img { transition: transform .5s ease; }
+    .svc-card:hover .svc-img { transform: scale(1.05) translateY(-4px); }
+    .ghost-drift { animation: ghostDrift 14s ease-in-out infinite; }
+
+    /* Икон тақталары (Артыкчылыктар) жана медальондор (Тарифтер) */
+    .icon-tile { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #C9B27C;
+      background: linear-gradient(135deg, rgba(201,178,124,.25), rgba(42,90,79,.55)); border: 1px solid rgba(201,178,124,.35);
+      transition: transform .4s ease; }
+    .adv-card:hover .icon-tile { transform: translateY(-4px) rotate(-6deg); }
+    .medal { position: relative; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; color: #C9B27C; margin-bottom: 18px;
+      background: radial-gradient(circle at 30% 30%, rgba(228,218,192,.28), rgba(42,90,79,.6)); }
+    .medal::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed rgba(201,178,124,.55); animation: spin 20s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .medal::before { animation: none; } .icon-tile { transition: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .w > span, .gw > span, .fx { transform: none; animation: none; opacity: 1; }
+      .gw > span { color: #C9B27C; background: none; }
+      .ch { opacity: 1; animation: none; }
+      .float-a, .float-b, .ghost-drift { animation: none; }
+      main h2.reveal::after { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="font-body text-white/85 antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 bg-gold text-ink px-4 py-2 rounded">Мазмунга өтүү</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-40 bg-ink/70 backdrop-blur border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-2" aria-label="vibe_coder.kg">
+        <!-- Профиль сыяктуу тегерек сүрөт (Instagram стили), алтын шакек менен -->
+        <span class="rounded-full p-[2px] bg-gradient-to-br from-gold via-sand to-moss shrink-0">
+          <img src="images/avatar.webp" alt="vibe_coder.kg автору" width="40" height="40"
+               class="block w-10 h-10 rounded-full object-cover border-2 border-ink">
+        </span>
+        <span class="font-display font-extrabold tracking-wide text-white">vibe_coder.kg</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm" aria-label="Негизги меню">
+        <a class="hover:text-gold transition" href="#services" data-i18n="nav.services">Кызматтар</a>
+        <a class="hover:text-gold transition" href="#course" data-i18n="nav.course">Курс</a>
+        <a class="hover:text-gold transition" href="#works" data-i18n="nav.works">Иштер</a>
+        <a class="hover:text-gold transition" href="#pricing" data-i18n="nav.pricing">Баалар</a>
+        <a class="hover:text-gold transition" href="#contact" data-i18n="nav.contact">Байланыш</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Тил которгуч -->
+        <div class="flex text-xs font-medium border border-white/15 rounded-full overflow-hidden" role="group" aria-label="Тил / Язык">
+          <button type="button" data-lang="kg" class="lang-btn px-3 py-1.5">KG</button>
+          <button type="button" data-lang="ru" class="lang-btn px-3 py-1.5">RU</button>
+        </div>
+        <button id="menuBtn" type="button" class="md:hidden w-10 h-10 grid place-items-center rounded-lg border border-white/15" aria-label="Менюну ачуу" aria-expanded="false" aria-controls="mobileNav">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="hidden md:hidden border-t border-white/5 bg-ink/95 px-4 py-3 flex-col gap-1 text-base" aria-label="Мобилдик меню">
+      <a class="block py-3" href="#services" data-i18n="nav.services">Кызматтар</a>
+      <a class="block py-3" href="#course" data-i18n="nav.course">Курс</a>
+      <a class="block py-3" href="#works" data-i18n="nav.works">Иштер</a>
+      <a class="block py-3" href="#pricing" data-i18n="nav.pricing">Баалар</a>
+      <a class="block py-3" href="#contact" data-i18n="nav.contact">Байланыш</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. HERO ============ -->
+    <section id="top" class="relative overflow-hidden" style="background: linear-gradient(180deg, #1f4a42 0%, #14342e 45%, rgba(7,16,15,0) 100%);">
+      <div class="ghost ghost-drift absolute -top-2 left-1/2 -translate-x-1/2 text-[34vw] md:text-[24vw] whitespace-nowrap" aria-hidden="true">VIBE</div>
+
+      <div class="relative max-w-6xl mx-auto px-4 pt-12 pb-10 md:pt-20 md:pb-14 grid md:grid-cols-2 gap-10 items-center">
+
+        <!-- Сол жак: ноутбуктагы сайт + калкып жүрүүчү белгилер (кооздоочу визуал) -->
+        <div class="order-2 md:order-1" aria-hidden="true"> <!-- LCP: reveal колдонулбайт, JS күтпөй дароо көрүнөт -->
+          <div class="relative max-w-lg mx-auto">
+            <img src="images/hero.webp" srcset="images/hero-sm.webp 560w, images/hero.webp 960w" sizes="(min-width: 768px) 512px, 92vw" alt="" width="960" height="640" class="float-a w-full h-auto" fetchpriority="high">
+            <span class="float-b absolute -top-2 left-2 sm:-left-4 rounded-full bg-gold text-ink font-display font-extrabold text-sm px-4 py-2 shadow-lg">AI</span>
+            <span class="float-a absolute top-1/2 -right-1 sm:-right-5 glass rounded-2xl px-4 py-2 font-display font-bold text-sm text-sand">24/7</span>
+            <span class="float-b absolute -bottom-2 left-6 glass rounded-2xl px-4 py-2 font-display font-bold text-sm text-gold">✓ CRM</span>
+          </div>
+        </div>
+
+        <!-- Оң жак: аталыш, оффер, CTA -->
+        <div class="order-1 md:order-2">
+          <p id="heroEyebrow" class="text-gold text-sm font-medium tracking-wider uppercase mb-4" data-i18n="hero.eyebrow">AI менен чат-бот, сайт жана автоматташтыруу</p>
+          <h1 id="heroTitle" class="font-display font-extrabold uppercase text-3xl sm:text-4xl lg:text-5xl leading-tight text-white" data-i18n="hero.title">Идеяңыздан иштеген сайтка чейин — <span class="text-gold">AI менен ылдам</span></h1>
+          <p class="fx mt-5 text-base md:text-lg text-white/80 max-w-lg" style="--d:1.1s" data-i18n="hero.sub">Чат-боттор, автоматташтыруу, сайттар жана тиркемелер — бизнесиңиз үчүн. Vibe coding курсунда өзүңүз жасаганды үйрөнөсүз.</p>
+
+          <div class="fx mt-7" style="--d:1.3s">
+            <p class="text-[11px] tracking-[.2em] uppercase text-white/60" data-i18n="hero.priceLabel">Баасы</p>
+            <p class="font-display font-bold text-xl sm:text-2xl text-white" data-i18n="hero.price">Кызматтар — $150дөн · Курс — $50дөн</p>
+          </div>
+
+          <div class="fx mt-7 flex flex-wrap items-center gap-4" style="--d:1.5s">
+            <a href="https://wa.me/996700516888" data-wa="hero" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-6 py-3 font-display font-bold uppercase text-sm tracking-wide">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.500 5.500 5.500 5.500l1-1.500-1.800-.9-.8.800a4 4 0 0 1-1.800-1.800l.8-.8-.9-1.800z"/></svg>
+              <span data-i18n="hero.cta">WhatsApp'ка жазуу</span>
+            </a>
+            <a href="#course" class="text-sm underline underline-offset-4 decoration-gold/60 hover:text-gold transition" data-i18n="hero.link">Курс жөнүндө</a>
+          </div>
+
+          <ul class="fx mt-9 flex flex-wrap gap-x-6 gap-y-2 text-[11px] tracking-widest uppercase text-white/70" style="--d:1.7s">
+            <li><a class="hover:text-gold" href="#advantages">+ <span data-i18n="tab.adv">Артыкчылыктар</span></a></li>
+            <li><a class="hover:text-gold" href="#services">+ <span data-i18n="nav.services">Кызматтар</span></a></li>
+            <li><a class="hover:text-gold" href="#course">+ <span data-i18n="nav.course">Курс</span></a></li>
+            <li><a class="hover:text-gold" href="#works">+ <span data-i18n="nav.works">Иштер</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hero төмөнкү тилкеси -->
+      <div class="relative bg-moss/70 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between text-sand">
+          <a href="#services" class="flex items-center gap-3 hover:text-gold"><span class="text-gold text-2xl leading-none" aria-hidden="true">‹</span><span data-i18n="nav.services">Кызматтар</span></a>
+          <a href="#course" class="flex items-center gap-3 hover:text-gold"><span data-i18n="nav.course">Курс</span><span class="text-gold text-2xl leading-none" aria-hidden="true">›</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. КӨЙГӨЙ ЖАНА ЧЕЧИМ ============ -->
+    <section id="problem" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white max-w-2xl reveal" data-i18n="prob.title">Сайт жасатуу кыйын болбошу керек</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-5">
+        <div class="glass rounded-3xl p-7 reveal">
+          <p class="text-xs tracking-[.2em] uppercase text-white/60 mb-4" data-i18n="prob.tag1">Көйгөй</p>
+          <ul class="space-y-4">
+            <li class="flex gap-3"><span class="text-white/40" aria-hidden="true">✕</span><span data-i18n="prob.1">Сайт жасатуу узакка созулат жана баасы түшүнүксүз</span></li>
+            <li class="flex gap-3"><span class="text-white/40" aria-hidden="true">✕</span><span data-i18n="prob.2">Курстарда теория көп, бирок өз иши жок</span></li>
+            <li class="flex gap-3"><span class="text-white/40" aria-hidden="true">✕</span><span data-i18n="prob.3">AI куралдарынын арасында кайдан баштоону билбейсиз</span></li>
+          </ul>
+        </div>
+        <div class="rounded-3xl p-7 bg-moss/50 border border-gold/30 reveal">
+          <p class="text-xs tracking-[.2em] uppercase text-gold mb-4" data-i18n="prob.tag2">Чечим</p>
+          <ul class="space-y-4">
+            <li class="flex gap-3"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="sol.1">AI менен ылдам прототип жана ачык баа</span></li>
+            <li class="flex gap-3"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="sol.2">Практика: курстун аягында өз долбооруңуз даяр</span></li>
+            <li class="flex gap-3"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="sol.3">Баштан аяк коштоо — WhatsApp аркылуу түз байланыш</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. АРТЫКЧЫЛЫКТАР ============ -->
+    <section id="advantages" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="adv.title">Биз менен иштөө ыңгайлуу</h2>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="adv-card glass rounded-3xl p-6 reveal">
+          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">01</span></div>
+          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.1.t">AI менен ылдам</h3>
+          <p class="mt-2 text-sm text-white/75" data-i18n="adv.1.d">Прототипти бат көрөсүз, оңдоолорду тез киргизебиз.</p>
+        </article>
+        <article class="adv-card glass rounded-3xl p-6 reveal">
+          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.5 1.5L7 5M3.5 12l1.5 1.5L7 11M3.5 18l1.5 1.5L7 17"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">02</span></div>
+          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.2.t">Түшүнүктүү процесс</h3>
+          <p class="mt-2 text-sm text-white/75" data-i18n="adv.2.d">Ар бир этап жана баа алдын ала макулдашылат.</p>
+        </article>
+        <article class="adv-card glass rounded-3xl p-6 reveal">
+          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">03</span></div>
+          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.3.t">Телефонго ылайыкталган</h3>
+          <p class="mt-2 text-sm text-white/75" data-i18n="adv.3.d">Баракчалар 375px экрандан баштап туура көрүнөт.</p>
+        </article>
+        <article class="adv-card glass rounded-3xl p-6 reveal">
+          <div class="flex items-center justify-between"><span class="icon-tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg></span><span class="font-display text-3xl font-extrabold text-white/15" aria-hidden="true">04</span></div>
+          <h3 class="mt-4 font-display font-bold text-lg text-white" data-i18n="adv.4.t">WhatsApp'та түз байланыш</h3>
+          <p class="mt-2 text-sm text-white/75" data-i18n="adv.4.d">Суроо жана оңдоолор үчүн ортомчусуз жазасыз.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 4. КЫЗМАТТАР ============ -->
+    <section id="services" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="nav.services">Кызматтар</h2>
+      <p class="mt-3 text-white/75 reveal" data-i18n="srv.sub">Бизнесиңизге керектүүнү тандаңыз</p>
+      <div class="mt-10 grid md:grid-cols-2 gap-5">
+        <article class="svc-card glass rounded-[2rem] overflow-hidden flex flex-col reveal">
+          <div class="relative overflow-hidden bg-gradient-to-br from-moss/60 via-forest/70 to-ink/80 px-6 pt-8 pb-3">
+            <span class="ghost absolute -right-2 -top-3 text-[8rem] sm:text-[9rem] select-none" aria-hidden="true">01</span>
+            <img src="images/bot.webp" srcset="images/bot-sm.webp 560w, images/bot.webp 960w" sizes="(min-width: 768px) 460px, 90vw" alt="" width="960" height="640" loading="lazy" decoding="async" class="svc-img float-a relative w-full max-w-[460px] h-auto mx-auto">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="srv.1.t">AI чат-боттор</h3>
+            <p class="mt-3 text-sm text-white/75" data-i18n="srv.1.d">Instagram, WhatsApp жана Telegram үчүн 24/7 иштеген боттор: кардарлардын суроосуна жооп берет, заказ кабыл алат жана сатууга жетелейт (ManyChat, Chatfuel + ChatGPT API).</p>
+            <div class="mt-5 flex-1">
+              <p class="font-display font-extrabold text-2xl text-gold">$150 – $500</p>
+              <p class="text-sm text-white/80">13 000 – 43 000 сом</p>
+              <p class="mt-2 text-xs text-white/60" data-i18n="srv.1.n">Жөнөкөй автожооптордон баштап, AI менен толук интеграцияга чейин.</p>
+            </div>
+            <a href="https://wa.me/996700516888" data-wa="srv1" target="_blank" rel="noopener noreferrer" class="mt-6 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="srv.cta">Баасын тактоо</a>
+          </div>
+        </article>
+        <article class="svc-card glass rounded-[2rem] overflow-hidden flex flex-col reveal">
+          <div class="relative overflow-hidden bg-gradient-to-br from-moss/60 via-forest/70 to-ink/80 px-6 pt-8 pb-3">
+            <span class="ghost absolute -right-2 -top-3 text-[8rem] sm:text-[9rem] select-none" aria-hidden="true">02</span>
+            <img src="images/crm.webp" srcset="images/crm-sm.webp 560w, images/crm.webp 960w" sizes="(min-width: 768px) 460px, 90vw" alt="" width="960" height="640" loading="lazy" decoding="async" class="svc-img float-a relative w-full max-w-[460px] h-auto mx-auto">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="srv.2.t">Автоматташтыруу (CRM)</h3>
+            <p class="mt-3 text-sm text-white/75" data-i18n="srv.2.d">Таргеттен түшкөн заявкалар AmoCRM, Bitrix24 же Google Sheets'ке автоматтык түшөт, кардарга WhatsApp'та ошол замат саламдашуу жөнөтүлөт (Make.com, Zapier).</p>
+            <div class="mt-5 flex-1">
+              <p class="font-display font-extrabold text-2xl text-gold">$200 – $800</p>
+              <p class="text-sm text-white/80">17 000 – 68 000 сом</p>
+              <p class="mt-2 text-xs text-white/60" data-i18n="srv.2.n">Интеграциялануучу сервистердин санына жана процесстин узундугуна жараша.</p>
+            </div>
+            <a href="https://wa.me/996700516888" data-wa="srv2" target="_blank" rel="noopener noreferrer" class="mt-6 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="srv.cta">Баасын тактоо</a>
+          </div>
+        </article>
+        <article class="svc-card glass rounded-[2rem] overflow-hidden flex flex-col reveal">
+          <div class="relative overflow-hidden bg-gradient-to-br from-moss/60 via-forest/70 to-ink/80 px-6 pt-8 pb-3">
+            <span class="ghost absolute -right-2 -top-3 text-[8rem] sm:text-[9rem] select-none" aria-hidden="true">03</span>
+            <img src="images/site.webp" srcset="images/site-sm.webp 560w, images/site.webp 960w" sizes="(min-width: 768px) 460px, 90vw" alt="" width="960" height="640" loading="lazy" decoding="async" class="svc-img float-a relative w-full max-w-[460px] h-auto mx-auto">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="srv.3.t">Тез лендинг жана сайт</h3>
+            <p class="mt-3 text-sm text-white/75" data-i18n="srv.3.d">Tilda, Framer же Webflow'до AI менен копирайтинг жана дизайн жасап, сайтты 2–3 күндө ишке киргизебиз.</p>
+            <div class="mt-5 flex-1">
+              <p class="font-display font-extrabold text-2xl text-gold">$200 – $700</p>
+              <p class="text-sm text-white/80">17 000 – 60 000 сом</p>
+              <p class="mt-2 text-xs text-white/60" data-i18n="srv.3.n">Визитка-сайт минималдуу баада, көп барактуу жана анимациялуу сайт жогорку чекке чейин.</p>
+            </div>
+            <a href="https://wa.me/996700516888" data-wa="srv3" target="_blank" rel="noopener noreferrer" class="mt-6 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="srv.cta">Баасын тактоо</a>
+          </div>
+        </article>
+        <article class="svc-card glass rounded-[2rem] overflow-hidden flex flex-col reveal">
+          <div class="relative overflow-hidden bg-gradient-to-br from-moss/60 via-forest/70 to-ink/80 px-6 pt-8 pb-3">
+            <span class="ghost absolute -right-2 -top-3 text-[8rem] sm:text-[9rem] select-none" aria-hidden="true">04</span>
+            <img src="images/app.webp" srcset="images/app-sm.webp 560w, images/app.webp 960w" sizes="(min-width: 768px) 460px, 90vw" alt="" width="960" height="640" loading="lazy" decoding="async" class="svc-img float-a relative w-full max-w-[460px] h-auto mx-auto">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl text-white" data-i18n="srv.4.t">Ички башкаруу тиркемелери (MVP)</h3>
+            <p class="mt-3 text-sm text-white/75" data-i18n="srv.4.d">Логистика, кампа же курулуш компаниясы үчүн кызматкерлерди жана товарларды эсепке алуучу веб/мобилдик тиркеме — код жазбай, 1–2 жумада (Glide, Bubble, FlutterFlow).</p>
+            <div class="mt-5 flex-1">
+              <p class="font-display font-extrabold text-2xl text-gold">$600 – $2 500+</p>
+              <p class="text-sm text-white/80">50 000 – 215 000+ сом</p>
+              <p class="mt-2 text-xs text-white/60" data-i18n="srv.4.n">Код менен жазылган тиркемелерге ($5 000+) караганда арзан жана тез.</p>
+            </div>
+            <a href="https://wa.me/996700516888" data-wa="srv4" target="_blank" rel="noopener noreferrer" class="mt-6 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="srv.cta">Баасын тактоо</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 5. КУРС ============ -->
+    <section id="course" class="relative overflow-hidden py-16 md:py-24 bg-forest/40 border-y border-white/5">
+      <div class="ghost absolute right-0 top-4 text-[26vw] md:text-[16vw]" aria-hidden="true">AI</div>
+      <div class="relative max-w-6xl mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="crs.title">Vibe coding курсу</h2>
+            <p class="mt-3 text-white/80 max-w-xl reveal" data-i18n="crs.sub">AI жардамы менен өз сайтыңызды жасоону үйрөнүңүз</p>
+
+            <p class="mt-5 inline-block rounded-full border border-gold/50 bg-gold/10 text-gold text-xs font-semibold tracking-wider uppercase px-4 py-1.5 reveal" data-i18n="crs.soon">Курс жакында башталат</p>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4 reveal">
+              <div class="glass rounded-2xl p-5"><p class="text-[11px] tracking-[.2em] uppercase text-white/60" data-i18n="crs.fmt">Формат</p><p class="mt-1 font-display font-bold" data-i18n="crs.fmt.v">Видеосабактар, Telegram чат, Zoom</p></div>
+              <div class="glass rounded-2xl p-5"><p class="text-[11px] tracking-[.2em] uppercase text-white/60" data-i18n="crs.start">Башталышы</p><p class="mt-1 font-display font-bold" data-i18n="crs.start.v">Жакында</p></div>
+            </div>
+          </div>
+          <div class="reveal" aria-hidden="true">
+            <img src="images/course.webp" srcset="images/course-sm.webp 560w, images/course.webp 960w" sizes="(min-width: 1024px) 512px, 92vw" alt="" width="960" height="640" loading="lazy" decoding="async" class="float-a w-full max-w-lg h-auto mx-auto">
+          </div>
+        </div>
+
+        <h3 class="mt-12 font-display font-bold text-lg text-gold uppercase tracking-wide reveal" data-i18n="crs.prog">Программа</h3>
+        <ol class="mt-5 grid md:grid-cols-2 gap-3">
+          <li class="glass rounded-2xl p-4 flex gap-4 reveal"><span class="font-display font-extrabold text-gold">1</span><span data-i18n="m.1">Vibe coding концепциясы жана AI (ChatGPT, Claude) менен туура иштөө, промпттор</span></li>
+          <li class="glass rounded-2xl p-4 flex gap-4 reveal"><span class="font-display font-extrabold text-gold">2</span><span data-i18n="m.2">Tilda жана ManyChat боюнча базалык сабактар</span></li>
+          <li class="glass rounded-2xl p-4 flex gap-4 reveal"><span class="font-display font-extrabold text-gold">3</span><span data-i18n="m.3">Жөнөкөй долбоорлорду чогултуу алгоритмдери</span></li>
+          <li class="glass rounded-2xl p-4 flex gap-4 reveal"><span class="font-display font-extrabold text-gold">4</span><span data-i18n="m.4">Make.com, Webflow, Bubble боюнча тереңдетилген модулдар (Стандарт жана VIP)</span></li>
+          <li class="glass rounded-2xl p-4 flex gap-4 reveal"><span class="font-display font-extrabold text-gold">5</span><span data-i18n="m.5">Кардар издөө, фриланс биржаларына чыгуу жана кызматты сатуу (Стандарт жана VIP)</span></li>
+          <li class="rounded-2xl p-4 flex gap-4 bg-moss/50 border border-gold/30 reveal"><span class="font-display font-extrabold text-gold">★</span><span data-i18n="m.6">VIP: реалдуу кардардын долбоорун автор менен чогуу жасайсыз</span></li>
+        </ol>
+
+        <a href="#pricing" class="mt-10 inline-flex rounded-xl bg-gold text-ink hover:bg-sand transition px-7 py-3.5 font-display font-bold uppercase text-sm tracking-wide" data-i18n="crs.cta2">Тарифти тандоо</a>
+      </div>
+    </section>
+
+    <!-- ============ 6. БИЗДИН ИШТЕР ============ -->
+    <section id="works" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="wk.title">Биздин иштер</h2>
+      <div class="mt-10 glass rounded-[2rem] p-8 md:p-12 text-center reveal">
+        <p class="font-display font-bold text-xl md:text-2xl text-white" data-i18n="wk.soon.t">Биринчи долбоорлор жакында ушул жерде</p>
+        <p class="mt-3 text-white/75 max-w-xl mx-auto" data-i18n="wk.soon.d">Аткарылган иштерди ушул бөлүмгө кошобуз. Биринчи кардарлардын бири болуп, өз долбооруңузду баштаңыз.</p>
+        <a href="https://wa.me/996700516888" data-wa="hero" target="_blank" rel="noopener noreferrer" class="mt-7 inline-flex rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-6 py-3 font-display font-bold uppercase text-sm" data-i18n="wk.cta">Долбоорду талкуулоо</a>
+      </div>
+    </section>
+
+    <!-- ============ 7. ПИКИРЛЕР ============ -->
+    <!-- Чыныгы пикирлер болгондо `hidden` атрибутун алып салып, тексттерди алмаштырыңыз -->
+    <section id="reviews" hidden class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="rev.title">Кардарлардын пикирлери</h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-5">
+        <blockquote class="glass rounded-3xl p-6 reveal"><p class="text-white/85"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.q">Кардардын чыныгы пикири</span></p><footer class="mt-4 text-sm text-gold"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.n">аты-жөнү</span></footer></blockquote>
+        <blockquote class="glass rounded-3xl p-6 reveal"><p class="text-white/85"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.q">Кардардын чыныгы пикири</span></p><footer class="mt-4 text-sm text-gold"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.n">аты-жөнү</span></footer></blockquote>
+        <blockquote class="glass rounded-3xl p-6 reveal"><p class="text-white/85"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.q">Кардардын чыныгы пикири</span></p><footer class="mt-4 text-sm text-gold"><span class="ph">[ОРУН АЛМАШТЫР]</span> <span data-i18n="rev.n">аты-жөнү</span></footer></blockquote>
+      </div>
+    </section>
+
+    <!-- ============ 8. БААЛАР ============ -->
+    <section id="pricing" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="pr.title">Курстун тарифтери</h2>
+      <p class="mt-3 text-white/80 reveal" data-i18n="pr.note">Кызматтардын баасы «Кызматтар» бөлүмүндө көрсөтүлгөн.</p>
+
+      <div class="mt-12 grid lg:grid-cols-3 gap-5 items-stretch">
+        <article class="relative glass rounded-[2rem] p-7 flex flex-col reveal">
+          
+          <span class="medal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z"/></svg></span>
+          <h3 class="font-display font-bold text-xl text-white" data-i18n="t.b.n">Базалык</h3>
+          <p class="text-sm text-gold" data-i18n="t.b.s">«Өз алдынча»</p>
+          <p class="mt-4 font-display font-extrabold text-3xl text-gold">$50 – $70</p>
+          <p class="text-sm text-white/80">4 300 – 6 000 сом</p>
+          <p class="mt-4 text-sm text-white/70" data-i18n="t.b.a">Студенттер жана башталгычтар үчүн</p>
+          <ul class="mt-5 space-y-3 text-sm flex-1">
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.b.f1">Vibe coding концепциясы, AI (ChatGPT, Claude) менен иштөө промпттору</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.b.f2">Tilda жана ManyChat боюнча видеосабактар</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.b.f3">Жөнөкөй долбоорлорду чогултуу алгоритмдери</span></li>
+            <li class="flex gap-2"><span class="text-white/40" aria-hidden="true">–</span><span data-i18n="t.b.f4">Куратор жана үй тапшырманы текшерүү жок</span></li>
+          </ul>
+          <a href="https://wa.me/996700516888" data-wa="tb" target="_blank" rel="noopener noreferrer" class="mt-7 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="t.cta">Алдын ала жазылуу</a>
+        </article>
+        <article class="relative bg-moss/60 border-2 border-gold rounded-[2rem] p-7 flex flex-col reveal">
+          <p class="absolute -top-3 left-7 bg-gold text-ink text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full" data-i18n="t.badge">Негизги тариф</p>
+          <span class="medal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.2a5.5 5.5 0 0 1 4.5 5.3"/></svg></span>
+          <h3 class="font-display font-bold text-xl text-white" data-i18n="t.s.n">Стандарт</h3>
+          <p class="text-sm text-gold" data-i18n="t.s.s">«Куратор менен»</p>
+          <p class="mt-4 font-display font-extrabold text-3xl text-gold">$150 – $200</p>
+          <p class="text-sm text-white/80">13 000 – 17 000 сом</p>
+          <p class="mt-4 text-sm text-white/70" data-i18n="t.s.a">Жаңы кесипти толук өздөштүрүп, акча тапкысы келгендер үчүн</p>
+          <ul class="mt-5 space-y-3 text-sm flex-1">
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f1">Базалык тарифтеги бардык сабактар</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f2">Make.com, Webflow, Bubble боюнча тереңдетилген модулдар</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f3">Кардар издөө, фриланс биржалары жана кызматты сатуу модулу</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f4">Куратор үй тапшырмаларды текшерет</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f5">Жабык Telegram чат (комьюнити)</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.s.f6">Апта сайын автор менен Zoom суроо-жооп</span></li>
+          </ul>
+          <a href="https://wa.me/996700516888" data-wa="ts" target="_blank" rel="noopener noreferrer" class="mt-7 text-center rounded-xl bg-gold text-ink hover:bg-sand transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="t.cta">Алдын ала жазылуу</a>
+        </article>
+        <article class="relative glass rounded-[2rem] p-7 flex flex-col reveal">
+          
+          <span class="medal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 4.5 4L12 4l4.5 7L21 7l-2 12H5z"/></svg></span>
+          <h3 class="font-display font-bold text-xl text-white" data-i18n="t.v.n">Премиум VIP</h3>
+          <p class="text-sm text-gold" data-i18n="t.v.s">«Менторлук»</p>
+          <p class="mt-4 font-display font-extrabold text-3xl text-gold">$450 – $600</p>
+          <p class="text-sm text-white/80">38 000 – 51 000 сом</p>
+          <p class="mt-4 text-sm text-white/70" data-i18n="t.v.a">Даяр бизнесмендер жана өз IT-агенттигин ачууну пландагандар үчүн</p>
+          <ul class="mt-5 space-y-3 text-sm flex-1">
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f1">Стандарт тарифтин бардык мүмкүнчүлүктөрү</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f2">Автор менен жекече (1-on-1) Zoom консультациялар</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f3">Реалдуу кардардын долбоору автор менен чогуу</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f4">Алгачкы коммерциялык буйрутманы табууга жардам</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f5">Келишим, юридикалык маселелер жана жогорку чектерге сатуу боюнча мастер-майнд</span></li>
+            <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span><span data-i18n="t.v.f6">Бишкекте оффлайн жолугушуулар</span></li>          </ul>
+          <a href="https://wa.me/996700516888" data-wa="tv" target="_blank" rel="noopener noreferrer" class="mt-7 text-center rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-5 py-3 font-display font-bold uppercase text-sm" data-i18n="t.cta">Алдын ала жазылуу</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 9. FAQ ============ -->
+    <section id="faq" class="max-w-3xl mx-auto px-4 py-16 md:py-20">
+      <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white reveal" data-i18n="faq.title">Көп берилүүчү суроолор</h2>
+      <div class="mt-8 space-y-3">
+        <details class="glass rounded-2xl px-5 py-4 reveal">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-medium text-white"><span data-i18n="faq.1.q">Курска кимдер жазыла алат?</span><span class="faq-plus text-gold text-2xl transition-transform" aria-hidden="true">+</span></summary>
+          <p class="mt-3 text-sm text-white/75" data-i18n="faq.1.a">Студенттер, башталгычтар жана жаңы кесипти толук өздөштүргүсү келгендер. Тарифти максатыңызга жараша тандайсыз.</p>
+        </details>
+        <details class="glass rounded-2xl px-5 py-4 reveal">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-medium text-white"><span data-i18n="faq.2.q">Иш канча убакытта даяр болот?</span><span class="faq-plus text-gold text-2xl transition-transform" aria-hidden="true">+</span></summary>
+          <p class="mt-3 text-sm text-white/75" data-i18n="faq.2.a">Тез лендинг — 2–3 күндө, ички тиркеме — 1–2 жумада. Так мөөнөттү WhatsApp'та талкуулап, алдын ала макулдашабыз.</p>
+        </details>
+        <details class="glass rounded-2xl px-5 py-4 reveal">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-medium text-white"><span data-i18n="faq.3.q">Төлөм кантип жүргүзүлөт?</span><span class="faq-plus text-gold text-2xl transition-transform" aria-hidden="true">+</span></summary>
+          <p class="mt-3 text-sm text-white/75" data-i18n="faq.3.a">Төлөм WhatsApp аркылуу макулдашылат.</p>
+        </details>
+        <details class="glass rounded-2xl px-5 py-4 reveal">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-medium text-white"><span data-i18n="faq.4.q">Иш даяр болгондон кийин колдоо барбы?</span><span class="faq-plus text-gold text-2xl transition-transform" aria-hidden="true">+</span></summary>
+          <p class="mt-3 text-sm text-white/75" data-i18n="faq.4.a">Колдоо WhatsApp аркылуу көрсөтүлөт.</p>
+        </details>
+        <details class="glass rounded-2xl px-5 py-4 reveal">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-medium text-white"><span data-i18n="faq.5.q">Кантип баштайбыз?</span><span class="faq-plus text-gold text-2xl transition-transform" aria-hidden="true">+</span></summary>
+          <p class="mt-3 text-sm text-white/75" data-i18n="faq.5.a">WhatsApp'ка жазыңыз — суроолоруңузга жооп берип, кийинки кадамды сунуштайбыз.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ 10. БАЙЛАНЫШ ФОРМАСЫ ============ -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div class="reveal">
+          <h2 class="font-display font-extrabold uppercase text-2xl md:text-4xl text-white" data-i18n="ct.title">Билдирүү калтырыңыз</h2>
+          <p class="mt-4 text-white/80 max-w-md" data-i18n="ct.sub">Форманы толтурсаңыз, даяр билдирүү WhatsApp'та ачылат — ошол жерден жөнөтөсүз.</p>
+          <p class="mt-8 text-sm text-white/60" data-i18n="ct.direct">Же түз жазыңыз:</p>
+          <a href="https://wa.me/996700516888" data-wa="direct" target="_blank" rel="noopener noreferrer" class="mt-1 inline-block font-display font-bold text-2xl text-gold hover:text-sand">+996 700 516 888</a>
+          <p id="tgRow" class="mt-3 hidden"><a id="tgLink" href="#" target="_blank" rel="noopener noreferrer" class="inline-block font-display font-bold text-lg text-sand hover:text-gold">Telegram: @N1kto01</a></p>
+        </div>
+
+        <div class="glass rounded-[2rem] p-6 md:p-8 reveal">
+          <form id="leadForm" novalidate>
+            <div class="space-y-5">
+              <div>
+                <label for="fName" class="block text-sm mb-1.5" data-i18n="ct.name">Атыңыз</label>
+                <input id="fName" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="eName"
+                  class="w-full rounded-xl bg-ink/60 border border-white/20 px-4 py-3 text-white placeholder-white/40 focus:border-gold outline-none" data-i18n-placeholder="ct.namePh" placeholder="Мисалы, Айбек">
+                <p id="eName" class="text-sm text-[#F5B7A8] mt-1.5 hidden" role="alert" data-i18n="err.name">Атыңызды жазыңыз (кеминде 2 тамга)</p>
+              </div>
+              <div>
+                <label for="fPhone" class="block text-sm mb-1.5" data-i18n="ct.phone">Телефон</label>
+                <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-describedby="ePhone"
+                  class="w-full rounded-xl bg-ink/60 border border-white/20 px-4 py-3 text-white placeholder-white/40 focus:border-gold outline-none" placeholder="+996 XXX XXX XXX">
+                <p id="ePhone" class="text-sm text-[#F5B7A8] mt-1.5 hidden" role="alert" data-i18n="err.phone">Телефон номерин туура жазыңыз (9–15 сан)</p>
+              </div>
+              <div>
+                <label for="fTopic" class="block text-sm mb-1.5" data-i18n="ct.topic">Эмнеге кызыгасыз?</label>
+                <select id="fTopic" name="topic" class="w-full rounded-xl bg-ink/60 border border-white/20 px-4 py-3 text-white focus:border-gold outline-none">
+                  <option value="bot" data-i18n="ct.o4">AI чат-бот</option>
+                  <option value="crm" data-i18n="ct.o5">Автоматташтыруу (CRM)</option>
+                  <option value="site" data-i18n="ct.o1">Сайт жасатуу</option>
+                  <option value="app" data-i18n="ct.o6">Ички тиркеме (MVP)</option>
+                  <option value="course" data-i18n="ct.o2">Vibe coding курсу</option>
+                  <option value="other" data-i18n="ct.o3">Башка</option>
+                </select>
+              </div>
+              <div>
+                <label for="fMsg" class="block text-sm mb-1.5" data-i18n="ct.msg">Билдирүү (милдеттүү эмес)</label>
+                <textarea id="fMsg" name="message" rows="3" maxlength="500"
+                  class="w-full rounded-xl bg-ink/60 border border-white/20 px-4 py-3 text-white placeholder-white/40 focus:border-gold outline-none"></textarea>
+              </div>
+              <button type="submit" class="w-full rounded-xl bg-gold text-ink hover:bg-sand transition px-6 py-3.5 font-display font-bold uppercase text-sm tracking-wide" data-i18n="ct.submit">Жөнөтүү</button>
+            </div>
+          </form>
+
+          <!-- «Рахмат» билдирүүсү: форма жөнөтүлгөндөн кийин көрүнөт -->
+          <div id="thanks" class="hidden text-center py-6" role="status" aria-live="polite">
+            <p class="font-display font-extrabold text-3xl text-gold" data-i18n="ty.title">Рахмат!</p>
+            <p class="mt-3 text-white/85" data-i18n="ty.text">Билдирүүңүз даяр. WhatsApp'та «Жөнөтүү» баскычын басыңыз.</p>
+            <a id="thanksWa" href="https://wa.me/996700516888" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex rounded-xl border-2 border-gold text-gold hover:bg-gold hover:text-ink transition px-6 py-3 font-display font-bold uppercase text-sm" data-i18n="ty.btn">WhatsApp'ты ачуу</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 11. FOOTER ============ -->
+  <footer class="border-t border-white/10 bg-ink/80">
+    <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <p class="font-display font-extrabold tracking-wide text-white">vibe_coder.kg</p>
+        <p class="mt-1 text-sm text-white/65" data-i18n="ft.tag">AI менен сайт жана курс</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="Footer меню">
+        <a class="hover:text-gold" href="#services" data-i18n="nav.services">Кызматтар</a>
+        <a class="hover:text-gold" href="#course" data-i18n="nav.course">Курс</a>
+        <a class="hover:text-gold" href="#pricing" data-i18n="nav.pricing">Баалар</a>
+        <a class="hover:text-gold" href="#contact" data-i18n="nav.contact">Байланыш</a>
+      </nav>
+      <div class="flex flex-col gap-1 text-gold font-medium">
+        <a href="https://wa.me/996700516888" data-wa="direct" target="_blank" rel="noopener noreferrer" class="hover:text-sand">WhatsApp: +996 700 516 888</a>
+        <a id="tgFoot" href="#" target="_blank" rel="noopener noreferrer" class="hidden hover:text-sand">Telegram: @N1kto01</a>
+      </div>
+    </div>
+    <p class="text-center text-xs text-white/50 pb-8">© <span id="year">2026</span> vibe_coder.kg. <span data-i18n="ft.rights">Бардык укуктар корголгон.</span></p>
+  </footer>
+
+  <!-- Жылмакай WhatsApp баскычы (бардык экрандарда) -->
+  <a href="https://wa.me/996700516888" data-wa="direct" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+     class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-gold text-ink grid place-items-center shadow-xl shadow-black/50 hover:bg-sand transition">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.500 5.500 5.500 5.500l1-1.500-1.800-.9-.8.800a4 4 0 0 1-1.800-1.800l.8-.8-.9-1.800z"/></svg>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

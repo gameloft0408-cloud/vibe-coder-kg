@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gameloft0408-cloud.github.io/vibe-coder-kg/sitemap.xml
