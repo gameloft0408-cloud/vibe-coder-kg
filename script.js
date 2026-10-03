@@ -20,7 +20,9 @@ const clean = (v, max) => String(v).replace(/[\u0000-\u001F\u007F<>]/g, ' ').rep
 /* ---------- 1. КОНФИГУРАЦИЯ ---------- */
 const CONFIG = {
   whatsapp: '996700516888',   // халкаралык формат, "+" жок
-  telegramUser: 'N1kto01'     // Telegram username ('@' жок). Бош болсо, Telegram көрүнбөйт
+  telegramUser: 'N1kto01',    // Telegram username ('@' жок). Бош болсо, Telegram көрүнбөйт
+  collectUrl: '',             // Google Apps Script Web App URL (заявкалар базасы + статистика). Бош болсо — өчүк. README.md → "Заявкалар базасы"
+  siteKey: 'vc-kg-2026'       // backend/Code.gs ичиндеги SITE_KEY менен бирдей болушу керек (жашыруун эмес, жөн гана таштанды чыпкалоо)
 };
 
 /* ---------- 2. ТИЛДЕР ----------
@@ -134,7 +136,7 @@ const RU = {
   'ty.text': 'Ваше сообщение готово. Нажмите «Отправить» в WhatsApp.',
   'ty.btn': 'Открыть WhatsApp',
 
-  'ft.tag': 'AI-чат-боты, сайты и курс', 'ft.rights': 'Все права защищены.'
+  'ft.privacy': 'Сайт собирает анонимную статистику (без cookie). Данные из формы видит только владелец сайта.', 'ft.tag': 'AI-чат-боты, сайты и курс', 'ft.rights': 'Все права защищены.'
 };
 
 /* Беттин мета-маалыматы */
@@ -335,6 +337,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ---------- 5. ФОРМА ---------- */
 const form = document.getElementById('leadForm');
+const formShownAt = Date.now();
 const thanks = document.getElementById('thanks');
 const fName = document.getElementById('fName');
 const fPhone = document.getElementById('fPhone');
@@ -375,9 +378,97 @@ form.addEventListener('submit', (e) => {
   const text = `${L.hi} ${L.name}: ${clean(fName.value, 60)}. ${L.phone}: ${clean(fPhone.value, 20)}. ${L.topic}: ${topic}.${msg ? ' ' + msg : ''}`;
   const url = waUrl(text);
 
+  /* Заявканы базага сактайбыз (бот болсо — жымжырттык менен өткөрүп жиберебүз) */
+  const spam = document.getElementById('fWebsite').value !== '' || Date.now() - formShownAt < 2500;
+  if (!spam) {
+    send({
+      t: 'lead', name: clean(fName.value, 60), phone: clean(fPhone.value, 20),
+      topic, msg, hp: '', ...ctx()
+    });
+    track('form_submit', topicSel.value);
+  }
+
   /* «Рахмат» көрсөтөбүз жана WhatsApp'ты ачабыз */
   document.getElementById('thanksWa').href = url;
   form.classList.add('hidden');
   thanks.classList.remove('hidden');
   window.open(url, '_blank', 'noopener,noreferrer');
 });
+
+/* ---------- 6. СТАТИСТИКА ЖАНА ЗАЯВКАЛАР БАЗАСЫ ----------
+   Бардыгы CONFIG.collectUrl бош болсо өчүк. Статистика анонимдүү: cookie жок, жеке маалымат жок,
+   "Do Not Track" / Global Privacy Control күйгүзүлгөн болсо — жөнөтүлбөйт.
+   Заявкалар (форма) гана — колдонуучу өзү жөнөткөндө — Google Sheets'ке түшөт. Маалыматты ээси гана көрөт. */
+const dnt = navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+
+let sid = '';
+try {
+  sid = sessionStorage.getItem('sid') || '';
+  if (!sid) { sid = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4); sessionStorage.setItem('sid', sid); }
+} catch (e) { sid = 'na'; }
+
+const qs = new URLSearchParams(location.search);
+const refHost = () => { try { const h = new URL(document.referrer).host; return h && h !== location.host ? h : ''; } catch (e) { return ''; } };
+const ctx = () => ({
+  sid, lang: currentLang,
+  dev: innerWidth < 768 ? 'mobile' : innerWidth < 1100 ? 'tablet' : 'desktop',
+  src: clean(qs.get('utm_source') || refHost() || 'direct', 40),
+  cam: clean(qs.get('utm_campaign') || '', 40)
+});
+
+function send(payload) {
+  if (!CONFIG.collectUrl) return;
+  try {
+    fetch(CONFIG.collectUrl, {
+      method: 'POST', mode: 'no-cors', keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ k: CONFIG.siteKey, ...payload })
+    }).catch(() => {});
+  } catch (e) { /* статистика сайттын иштешин бузбашы керек */ }
+}
+function track(ev, detail) {
+  if (dnt) return;
+  send({ t: 'ev', ev, d: clean(detail || '', 40), ...ctx() });
+}
+
+if (CONFIG.collectUrl) {
+  const note = document.getElementById('privacyNote');
+  if (note) note.classList.remove('hidden');
+
+  track('page_view');
+
+  /* Бөлүмдөр көрүндү (ар бири бир гана жолу) */
+  if ('IntersectionObserver' in window) {
+    const seen = new Set();
+    const sio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting && !seen.has(en.target.id)) { seen.add(en.target.id); track('section', en.target.id); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('main section[id]').forEach((s) => sio.observe(s));
+  }
+
+  /* Скролл тереңдиги */
+  const marks = [25, 50, 75, 100]; const hit = new Set();
+  addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = Math.round((h.scrollTop + innerHeight) / h.scrollHeight * 100);
+    marks.forEach((m) => { if (pct >= m && !hit.has(m)) { hit.add(m); track('scroll', String(m)); } });
+  }, { passive: true });
+
+  /* Баскычтар: WhatsApp (кайсы кызмат/тариф), Telegram */
+  document.addEventListener('click', (e) => {
+    const wa = e.target.closest('[data-wa]');
+    if (wa) { track('cta_wa', wa.dataset.wa); return; }
+    if (e.target.closest('#tgLink, #tgFoot')) track('cta_tg', '');
+  });
+
+  document.querySelectorAll('.lang-btn').forEach((b) => b.addEventListener('click', () => track('lang', b.dataset.lang)));
+  fName.addEventListener('focus', () => track('form_start', ''), { once: true });
+
+  /* Баракчада канча убакыт болду */
+  const t0 = Date.now();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') track('leave', String(Math.min(Math.round((Date.now() - t0) / 1000), 3600)));
+  });
+}

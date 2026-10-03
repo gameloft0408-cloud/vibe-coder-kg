@@ -31,7 +31,7 @@
   </script>
 
   <!-- Коопсуздук: контент саясаты (CSP). Скрипттер жана шрифттер — өз серверибизден гана. Толук баштар: _headers / vercel.json -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Шрифттер: Montserrat (аталыштар) + Inter (текст). Өзүбүздүн серверден, кириллица жана ң ү ө тамгалары менен -->
@@ -531,6 +531,10 @@
                 <textarea id="fMsg" name="message" rows="3" maxlength="500"
                   class="w-full rounded-xl bg-ink/60 border border-white/20 px-4 py-3 text-white placeholder-white/40 focus:border-gold outline-none"></textarea>
               </div>
+              <!-- Таштанды (бот) тузагы: адам көрбөйт, бот толтурат -->
+              <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                <label>Website <input type="text" id="fWebsite" name="website" tabindex="-1" autocomplete="off"></label>
+              </div>
               <button type="submit" class="w-full rounded-xl bg-gold text-ink hover:bg-sand transition px-6 py-3.5 font-display font-bold uppercase text-sm tracking-wide" data-i18n="ct.submit">Жөнөтүү</button>
             </div>
           </form>
@@ -564,6 +568,7 @@
         <a id="tgFoot" href="#" target="_blank" rel="noopener noreferrer" class="hidden hover:text-sand">Telegram: @N1kto01</a>
       </div>
     </div>
+    <p id="privacyNote" class="hidden text-center text-xs text-white/60 px-4 pb-2" data-i18n="ft.privacy">Сайт анонимдүү статистика жыйнайт (cookie жок). Форма аркылуу жөнөтүлгөн маалыматты ээси гана көрөт.</p>
     <p class="text-center text-xs text-white/50 pb-8">© <span id="year">2026</span> vibe_coder.kg. <span data-i18n="ft.rights">Бардык укуктар корголгон.</span></p>
   </footer>
 
