@@ -91,12 +91,8 @@ const RU = {
   'crs.cta2': 'Выбрать тариф',
 
   'wk.title': 'Наши работы',
-  'wk.p1.chip': 'Telegram-мини-приложение',
-  'wk.p1.t': 'Telegram-приложение для фастфуда',
-  'wk.p1.d': 'Приложение, которое открывается прямо внутри Telegram. Клиенту ничего не нужно скачивать: нажал на ссылку и пользуется. Это мы сделали сами.',
-  'wk.p1.btn': 'Открыть в Telegram',
-  'wk.soon.t': 'Следующий проект может быть вашим',
-  'wk.soon.d': 'Мы добавляем в этот раздел выполненные работы. Станьте одним из первых и начните свой проект.',
+  'wk.soon.t': 'Первые проекты скоро появятся здесь',
+  'wk.soon.d': 'Мы будем добавлять в этот раздел выполненные работы. Станьте одним из первых клиентов и начните свой проект.',
   'wk.cta': 'Обсудить проект',
 
   'rev.title': 'Отзывы клиентов', 'rev.q': 'настоящий отзыв клиента', 'rev.n': 'имя и фамилия',
@@ -481,3 +477,72 @@ if (CONFIG.collectUrl) {
     if (document.visibilityState === 'hidden') track('leave', String(Math.min(Math.round((Date.now() - t0) / 1000), 3600)));
   });
 }
+
+/* ---------- 7. HERO ФОНУ: бири-бирине байланган чекиттер ----------
+   Жеңил canvas: чекиттер жай жылат, жакындары сызык менен байланат. Hero көрүнбөсө же бет жашырылса — токтойт.
+   "prefers-reduced-motion" болсо — бир жолу гана тартылат. Баракчанын жүктөлүшүн кармабайт (idle убакытта башталат). */
+(function heroNetwork() {
+  const cv = document.getElementById('heroCanvas');
+  const ctx = cv && cv.getContext && cv.getContext('2d');
+  if (!ctx) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  let w = 0, h = 0, pts = [], raf = 0, visible = true;
+
+  function seed() {
+    const n = Math.round(Math.min(58, Math.max(22, innerWidth / 24)));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: Math.random() * 1.3 + 0.6
+    }));
+  }
+  function resize() {
+    const r = cv.getBoundingClientRect();
+    w = r.width; h = r.height;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seed(); draw();
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const max = innerWidth < 640 ? 100 : 135;
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i];
+      for (let k = i + 1; k < pts.length; k++) {
+        const b = pts[k], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < max * max) {
+          ctx.strokeStyle = 'rgba(201,178,124,' + (0.26 * (1 - Math.sqrt(d2) / max)).toFixed(3) + ')';
+          ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      ctx.fillStyle = 'rgba(228,218,192,.75)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+    }
+  }
+  function step() {
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+    }
+    draw();
+    raf = requestAnimationFrame(step);
+  }
+  function update() {
+    const run = visible && !document.hidden && !reduce;
+    if (run && !raf) raf = requestAnimationFrame(step);
+    if (!run && raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+  function start() {
+    resize();
+    let t = 0;
+    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(resize, 200); });
+    document.addEventListener('visibilitychange', update);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((e) => { visible = e[0].isIntersecting; update(); }, { threshold: 0 }).observe(cv.parentElement);
+    }
+    update();
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1200 });
+  else setTimeout(start, 400);
+})();
